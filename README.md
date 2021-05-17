@@ -1,19 +1,25 @@
 # Systemmonitoring
 <pre>
-The services relevant to the node(s) that will host the zabbix server are<br />
-mysql-server<br />
-zabbix-server-mysql<br />
-zabbix-web-nginx-mysql<br />
+Deploy the docker stack
+docker stack deploy -c docker-compose.yml [name_of_the_stack]
 
-The services relevant to the node(s) that will send metrics to the server are<br />
-zabbix-agent<br />
+Remove docker stack
+docker stack rm [name_of_the_stack]
 
-The node(s) that are intended to be zabbix server(s) are assigned node labels via<br />
-docker node update --label-add [key]=[value] NODE<br />
+The services relevant to the node(s) that will host the zabbix server are
+mysql-server
+zabbix-server-mysql
+zabbix-web-nginx-mysql
+
+The services relevant to the node(s) that will send metrics to the server are
+zabbix-agent
+
+The node(s) that are intended to be zabbix server(s) are assigned node labels via
+docker node update --label-add [key]=[value] NODE
   
-Changes are to be made under the relevant services to change the key value pair<br />
-deploy:<br />
-  placement:<br />
-    constraints:<br />
-      - node.labels.[key] == [value]<br />
+Changes are to be made under the relevant services to change the key value pair
+deploy:
+  placement:
+    constraints:
+      - node.labels.[key] == [value]
 </pre>
